@@ -18,8 +18,6 @@ def register_user(data: Dict) -> User:
     specializations = data.get("specializations")
     if "specializations" in data.keys():
         del data["specializations"]
-    print("data")
-    print(data)
     user = User.objects.create(**data)
     user.set_password(password)
     user.save()
