@@ -1,0 +1,23 @@
+services:
+    backend:
+        build:
+            context: ./backend/
+        restart: always
+        ports:
+            - 127.0.0.1:8000:8000
+        networks:
+            - default
+        env_file:
+            - ./backend/.env
+        depends_on:
+            - postgres
+    postgres:
+        image: postgres:17-alpine
+        restart: always
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        env_file:
+            - ./backend/.env
+
+volumes:
+    postgres-data:
